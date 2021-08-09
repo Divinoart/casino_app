@@ -1,7 +1,12 @@
 import 'package:casino_app/presentation/screens/homescreen.dart';
+import 'package:casino_app/routes.dart';
+import 'package:casino_app/welcome/Splash.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -11,10 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Casino',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.red,),
-      home: Home(),
+        primarySwatch: Colors.red,
+      ),
+      home: Splash(),
+      routes: routes(context),
     );
   }
 }
-

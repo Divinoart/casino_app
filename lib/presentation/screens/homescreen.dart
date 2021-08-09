@@ -1,4 +1,8 @@
-import 'package:casino_app/presentation/screens/homtab.dart';
+import 'package:casino_app/presentation/screens/Tabscreen/account.dart';
+import 'package:casino_app/presentation/screens/Tabscreen/bonus.dart';
+import 'package:casino_app/presentation/screens/Tabscreen/game.dart';
+import 'package:casino_app/presentation/screens/Tabscreen/homtab.dart';
+import 'package:casino_app/presentation/screens/Tabscreen/promo.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -12,7 +16,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: 1);
+    _controller = PersistentTabController(initialIndex: 0);
     // TODO: implement initState
     super.initState();
   }
@@ -26,14 +30,13 @@ class _HomeState extends State<Home> {
         screens: _buildScreens(),
         items: _navBarsItems(),
         confineInSafeArea: true,
-        backgroundColor:
-        Colors.white, // Default is Colors.white.
+        backgroundColor: Colors.white, // Default is Colors.white.
         handleAndroidBackButtonPress: true, // Default is true.
         resizeToAvoidBottomInset:
-        true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
+            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
         stateManagement: true, // Default is true.
         hideNavigationBarWhenKeyboardShows:
-        true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
         decoration: NavBarDecoration(
           borderRadius: BorderRadius.circular(5.0),
           colorBehindNavBar: Theme.of(context).primaryColor,
@@ -52,24 +55,20 @@ class _HomeState extends State<Home> {
           duration: Duration(milliseconds: 200),
         ),
         navBarStyle:
-        NavBarStyle.style6, // Choose the nav bar style with this property.
+            NavBarStyle.style6, // Choose the nav bar style with this property.
       ),
     );
   }
 
-
   List<Widget> _buildScreens() {
     return [
       HomeTab(title: "Casino"),
-      HomeTab(title: "Bonuses"),
-      HomeTab(title: "Promotions"),
-      HomeTab(title: "Betting"),
-      HomeTab(title: "Games"),
-
+      Bonus(),
+      promos(),
+      account(),
+      games(),
     ];
   }
-
-
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
@@ -109,11 +108,11 @@ class _HomeState extends State<Home> {
       PersistentBottomNavBarItem(
         icon: Padding(
           padding: const EdgeInsets.all(4.0),
-          child: Icon(Icons.beach_access),
+          child: Icon(Icons.info),
         ),
         textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w600),
         iconSize: 20,
-        title: ("Betting"),
+        title: ("About Us"),
         activeColorPrimary: Theme.of(context).accentColor,
         inactiveColorPrimary: Theme.of(context).textTheme.caption.color,
       ),
@@ -130,5 +129,4 @@ class _HomeState extends State<Home> {
       ),
     ];
   }
-
 }

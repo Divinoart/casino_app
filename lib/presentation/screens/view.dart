@@ -32,7 +32,7 @@ class _ViewScreenState extends State<ViewScreen> {
         ),
         centerTitle: true,
         title: Text(
-          "Casino Dash",
+          "Casino Dash", 
         ),
         elevation: 0.0,
       ),
